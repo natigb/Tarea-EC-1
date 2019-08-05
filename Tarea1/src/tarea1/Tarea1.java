@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tareaec1;
+package tarea1;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,7 +19,7 @@ import javafx.stage.Stage;
  *
  * @author Nati Gonzalez
  */
-public class TareaEC1 extends Application {
+public class Tarea1 extends Application {
     
     @Override
     public void start(Stage primaryStage) {
@@ -27,6 +29,14 @@ public class TareaEC1 extends Application {
             
             @Override
             public void handle(ActionEvent event) {
+                leer notas= new leer();
+               
+                try {
+                    notas.leercsv();
+                } catch (Exception ex) {    
+                    Logger.getLogger(Tarea1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 System.out.println("Hello World!");
             }
         });
