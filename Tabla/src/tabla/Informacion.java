@@ -130,8 +130,12 @@ public class Informacion {
     public void setProyecto3(double proyecto3) {
         this.proyecto3 = proyecto3;
     }
+
+       
+        }
     
-    
-    
+  class tipoa extends Informacion{
   
-}
+  }  
+  
+

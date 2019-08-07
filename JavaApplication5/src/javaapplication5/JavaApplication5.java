@@ -7,6 +7,8 @@ package javaapplication5;
 
 //import java.io.FileReader;
 import java.io.*; 
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Nati Gonzalez
@@ -19,28 +21,25 @@ public class JavaApplication5 {
      */
     
     public static void main(String[] args) throws Exception {
-          int i;
+          String line;
+             
+          BufferedReader archivo=new BufferedReader(new FileReader("C:\\Users\\Nati Gonzalez\\Desktop\\Datos I\\Tarea EC 1\\Notas.csv"));
+          System.out.println(archivo);
+          List a=new ArrayList();
+          while ((line=archivo.readLine()) != null) {
+                String[] dato = line.split(",", -1);
+                //System.out.println(dato);
+ 
+                //Record record = new Record(fields[0], fields[1], fields[2],
+                  //      fields[3], fields[4], fields[5]);
+                //a.add(dato);
+ 
+            }
           
-          FileReader fr=new FileReader("C:\\Users\\Nati Gonzalez\\Desktop\\Datos I\\Tarea EC 1\\Notas.csv");    
-          BufferedReader br=new BufferedReader(fr);
-          System.out.println(br.readLine());
-          //while (row=br.readLine() != null) {
-            //data = row.split(",");
-    // do something with the data
-            //}
+          //System.out.println(a);
           
-          //while((i=br.read())!=-1){
           
-          //System.out.print((char)i);  
-          //}  
-          br.close();    
-          fr.close();
-        //try ( // TODO code application logic here
-          //  FileReader doc = new FileReader("C:\\Users\\Nati Gonzalez\\Desktop\\Datos I\\Tarea EC 1\\Notas.csv")) {
-          //  int i;
-          //  while((i=doc.read())!=-1)
-          //      System.out.print((char)i);
-        //} 
+          archivo.close();    
        
     }
     

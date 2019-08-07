@@ -1,6 +1,12 @@
 
 package tabla;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +30,7 @@ public class Tabla extends Application {
     }
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         ventana = primaryStage;
         ventana.setTitle("Tabla de estudiantes");
         
@@ -90,11 +96,24 @@ public class Tabla extends Application {
         ventana.show();    
     }
     
-public ObservableList<Informacion> getInformacion(){
+public ObservableList<Informacion> getInformacion() throws FileNotFoundException, IOException{
     ObservableList<Informacion> info = FXCollections.observableArrayList();
-    info.add(new Informacion("1000", "Pri Mero", "1@tec.cr","1234","One","A",65,34,87,45,74,73));
-    info.add(new Informacion("1001", "Seg Undo", "2@tec.cr","1264","Two","A",85,74,67,85,34,63));
-    info.add(new Informacion("1002", "Ter Cero", "3@tec.cr","1284","Three","B",76,54,98,64,78,79));
+    String linea;
+             
+          BufferedReader archivo=new BufferedReader(new FileReader("C:\\Users\\Nati Gonzalez\\Desktop\\Datos I\\Tarea EC 1\\Notas.csv"));
+          System.out.println(archivo);
+         
+          while ((linea=archivo.readLine()) != null) {
+                String[] dato = linea.split(",", -1);
+               
+ 
+                info.add( new Informacion(dato[0], dato[1], dato[2],
+                        dato[3], dato[4], dato[5],Double.parseDouble(dato[6]),Double.parseDouble(dato[7]),
+                        Double.parseDouble(dato[8]),Double.parseDouble(dato[9]),Double.parseDouble(dato[10]),
+                        Double.parseDouble(dato[11])));
+       
+ 
+            }
     return info;
 }
 }
