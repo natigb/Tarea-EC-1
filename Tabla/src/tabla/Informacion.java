@@ -2,24 +2,45 @@
 package tabla;
 
 public class Informacion {
-    private String carnet;
-    private String nombre;
-    private String correo;
-    private String telefono;
-    private String nickname;
-    private String tipo;
-    private double examenes;
-    private double quices;
-    private double tareas;
-    private double proyecto1;
-    private double proyecto2;
-    private double proyecto3;
+    public String carnet;
+    public String nombre;
+    public String correo;
+    public String telefono;
+    public String nickname;
+    public String tipo;
+    public String examenes;
+    public String quices;
+    public String tareas;
+    public String proyecto1;
+    public String proyecto2;
+    public String proyecto3;
+    public String notafinal;
+    //private String promExamenes;
+    //private String promProyectos;
     
     
-    public Informacion(String carnet, String nombre, String correo, 
-    String telefono, String nickname, String tipo, double examenes,
-    double quices, double tareas, double proyecto1,double proyecto2,
-    double proyecto3){
+    public Informacion(){
+        this.carnet = "";
+        this.correo = "";
+        this.examenes = "";
+        this.nickname = "";
+        this.nombre = "";
+        this.proyecto1 = "";
+        this.proyecto2 = "";
+        this.proyecto3 = "";
+        this.quices = "";
+        this.tareas = "";
+        this.telefono =  "";
+        this.tipo = "";
+        //this.promProyectos="";
+        //this.promExamenes="";
+        this.notafinal = "";
+        
+    }
+    public void Informacion(String carnet, String nombre, String correo, 
+    String telefono, String nickname, String tipo, String examenes,
+    String quices, String tareas, String proyecto1,String proyecto2,
+    String proyecto3){
         this.carnet = carnet;
         this.correo = correo;
         this.examenes = examenes;
@@ -32,7 +53,15 @@ public class Informacion {
         this.tareas = tareas;
         this.telefono =  telefono;
         this.tipo = tipo;
- 
+       // this.notafinal = Double.toString((examenes+tareas+quices+proyecto1+proyecto2+proyecto3)/6);
+        /*if ("A".equals(tipo) || "a".equals(tipo)){
+            this.promExamenes=Double.toString((examenes+quices+tareas)/3);   
+            
+            }
+        if ("B".equals(tipo)|| "b".equals(tipo)){
+            this.promProyectos=Double.toString((proyecto1+proyecto2+proyecto3)/3);
+            
+            }*/
     }
 
     public String getCarnet() {
@@ -83,59 +112,66 @@ public class Informacion {
         this.tipo = tipo;
     }
 
-    public double getExamenes() {
+    public String getExamenes() {
         return examenes;
     }
 
-    public void setExamenes(double examenes) {
+    public void setExamenes(String examenes) {
         this.examenes = examenes;
     }
 
-    public double getQuices() {
+    public String getQuices() {
         return quices;
     }
 
-    public void setQuices(double quices) {
+    public void setQuices(String quices) {
         this.quices = quices;
     }
 
-    public double getTareas() {
+    public String getTareas() {
         return tareas;
     }
 
-    public void setTareas(double tareas) {
+    public void setTareas(String tareas) {
         this.tareas = tareas;
     }
 
-    public double getProyecto1() {
+    public String getProyecto1() {
         return proyecto1;
     }
 
-    public void setProyecto1(double proyecto1) {
+    public void setProyecto1(String proyecto1) {
         this.proyecto1 = proyecto1;
     }
 
-    public double getProyecto2() {
+    public String getProyecto2() {
         return proyecto2;
     }
 
-    public void setProyecto2(double proyecto2) {
+    public void setProyecto2(String proyecto2) {
         this.proyecto2 = proyecto2;
     }
 
-    public double getProyecto3() {
+    public String getProyecto3() {
         return proyecto3;
     }
 
-    public void setProyecto3(double proyecto3) {
+    public void setProyecto3(String proyecto3) {
         this.proyecto3 = proyecto3;
     }
+
+    public String getNotafinal() {
+        return notafinal;
+    }
+
+    public void setNotafinal(String notafinal) {
+        this.notafinal = notafinal;
+    }
+   
+   
+
+  
 
        
         }
     
-  class tipoa extends Informacion{
-  
-  }  
-  
-
