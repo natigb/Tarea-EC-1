@@ -1,10 +1,32 @@
 
 package tabla;
+/**
+ * El programa Tabla es una aplicacion que a partir de un archivo CSV toma datos de estudiantes y los 
+ * muestra en una tabla y muestra 3 columnas adicionales que muestran promedios de examenes, quices y tareas o
+ * de proyectos dependiendo del tipo de estudiante y la nota final
+ * 
+ * Se aplican los conceptos:
+ * Clase: Está la clase Tabla que muestra la tabla con los datos del archivo CSV la clase Estudiantes que tiene algunos 
+ * atributos respecto a las notas de los estudiantes y sus clases hijas typeA y typeB que tiene atributos dependiendo 
+ * del tipo de estudiante
+ * Instancia: En el método getInformacion donde se crea la lista de los datos para la tabla se crean objetos a partir de la clase
+ * typeA o typeB correspondiente al tipo de estudiante
+ *  
+ * Encapsulación
+ * 
+ * 
+ * 
+ * 
+ * Polimorfismo
+ * Sobre-escritura
+ * Sobrecarga
+ * 
+ * @author Natalia González
+ * @version 1.0
+ * 
+ */
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +40,7 @@ import javafx.stage.Stage;
 
 public class Tabla extends Application {
     Stage ventana;
-    TableView<Informacion> latabla;
+    TableView<Estudiantes> latabla;
     public static void main(String[] args) {
         launch(args);
     }
@@ -29,70 +51,71 @@ public class Tabla extends Application {
         ventana.setTitle("Tabla de estudiantes");
         
         //Columnas
-        TableColumn<Informacion, String> columcarnet= new TableColumn<>("Carnet");
+        TableColumn<Estudiantes, String> columcarnet= new TableColumn<>("Carnet");
         columcarnet.setMinWidth(100);
-        columcarnet.setCellValueFactory(new PropertyValueFactory<Informacion, String>("carnet"));
+        columcarnet.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("carnet"));
         
-        TableColumn<Informacion, String> columnombre= new TableColumn<>("Nombre Completo");
+        TableColumn<Estudiantes, String> columnombre= new TableColumn<>("Nombre Completo");
         columnombre.setMinWidth(100);
-        columnombre.setCellValueFactory(new PropertyValueFactory<Informacion, String>("nombre"));
+        columnombre.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("nombre"));
         
-        TableColumn<Informacion, String> columcorreo= new TableColumn<>("Correo");
+        TableColumn<Estudiantes, String> columcorreo= new TableColumn<>("Correo");
         columcorreo.setMinWidth(100);
-        columcorreo.setCellValueFactory(new PropertyValueFactory<Informacion, String>("correo"));
+        columcorreo.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("correo"));
         
-        TableColumn<Informacion, String> columtelefono= new TableColumn<>("Telefono");
+        TableColumn<Estudiantes, String> columtelefono= new TableColumn<>("Telefono");
         columtelefono.setMinWidth(100);
-        columtelefono.setCellValueFactory(new PropertyValueFactory<Informacion, String>("telefono"));
+        columtelefono.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("telefono"));
         
-        TableColumn<Informacion, String> columnickname= new TableColumn<>("Nickname");
+        TableColumn<Estudiantes, String> columnickname= new TableColumn<>("Nickname");
         columnickname.setMinWidth(100);
-        columnickname.setCellValueFactory(new PropertyValueFactory<Informacion, String>("nickname"));
+        columnickname.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("nickname"));
         
-        TableColumn<Informacion, String> columtipo= new TableColumn<>("Tipo");
+        TableColumn<Estudiantes, String> columtipo= new TableColumn<>("Tipo");
         columtipo.setMinWidth(50);
-        columtipo.setCellValueFactory(new PropertyValueFactory<Informacion, String>("tipo"));
+        columtipo.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("tipo"));
         
-        TableColumn<Informacion, String> columexamenes= new TableColumn<>("Promedio de los examenes");
+        TableColumn<Estudiantes, String> columexamenes= new TableColumn<>("Promedio de los examenes");
         columexamenes.setMinWidth(50);
-        columexamenes.setCellValueFactory(new PropertyValueFactory<Informacion, String>("examenes"));
+        columexamenes.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("examenes"));
         
-        TableColumn<Informacion, String> columquices= new TableColumn<>("Promedio de los quices");
+        TableColumn<Estudiantes, String> columquices= new TableColumn<>("Promedio de los quices");
         columquices.setMinWidth(50);
-        columquices.setCellValueFactory(new PropertyValueFactory<Informacion, String>("quices"));
+        columquices.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("quices"));
         
-        TableColumn<Informacion, String> columtareas= new TableColumn<>("Promedio de las tareas");
+        TableColumn<Estudiantes, String> columtareas= new TableColumn<>("Promedio de las tareas");
         columtareas.setMinWidth(50);
-        columtareas.setCellValueFactory(new PropertyValueFactory<Informacion, String>("tareas"));
+        columtareas.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("tareas"));
         
-        TableColumn<Informacion, String> columproyecto1= new TableColumn<>("Nota del Proyecto 1");
+        TableColumn<Estudiantes, String> columproyecto1= new TableColumn<>("Nota del Proyecto 1");
         columproyecto1.setMinWidth(50);
-        columproyecto1.setCellValueFactory(new PropertyValueFactory<Informacion, String>("proyecto1"));
+        columproyecto1.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("proyecto1"));
         
-        TableColumn<Informacion, String> columproyecto2= new TableColumn<>("Nota del Proyecto 2");
+        TableColumn<Estudiantes, String> columproyecto2= new TableColumn<>("Nota del Proyecto 2");
         columproyecto2.setMinWidth(50);
-        columproyecto2.setCellValueFactory(new PropertyValueFactory<Informacion, String>("proyecto2"));
+        columproyecto2.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("proyecto2"));
         
-        TableColumn<Informacion, String> columproyecto3= new TableColumn<>("Nota del Proyecto 3");
+        TableColumn<Estudiantes, String> columproyecto3= new TableColumn<>("Nota del Proyecto 3");
         columproyecto3.setMinWidth(50);
-        columproyecto3.setCellValueFactory(new PropertyValueFactory<Informacion, String>("proyecto3"));
+        columproyecto3.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("proyecto3"));
         
-        TableColumn<Informacion, String> columpromex= new TableColumn<>("Nota Promedio (examenes,quices,tareas");
+        TableColumn<Estudiantes, String> columpromex= new TableColumn<>("Nota Promedio (examenes,quices,tareas");
         columpromex.setMinWidth(50);
-        columpromex.setCellValueFactory(new PropertyValueFactory<Informacion, String>("promExamenes"));
+        columpromex.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("promExamenes"));
         
-        TableColumn<Informacion, String> columprompro= new TableColumn<>("Nota Promedio (examenes,quices,tareas");
+        TableColumn<Estudiantes, String> columprompro= new TableColumn<>("Nota Promedio (examenes,quices,tareas");
         columprompro.setMinWidth(50);
-        columprompro.setCellValueFactory(new PropertyValueFactory<Informacion, String>("promProyectos"));
+        columprompro.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("promProyectos"));
         
-        TableColumn<Informacion, String> columnotafinal= new TableColumn<>("Nota Final");
+        TableColumn<Estudiantes, String> columnotafinal= new TableColumn<>("Nota Final");
         columnotafinal.setMinWidth(50);
-        columnotafinal.setCellValueFactory(new PropertyValueFactory<Informacion, String>("notafinal"));
+        columnotafinal.setCellValueFactory(new PropertyValueFactory<Estudiantes, String>("notafinal"));
         
         latabla= new TableView<>();
         latabla.setItems(getInformacion());
         latabla.getColumns().addAll(columcarnet,columnombre,columcorreo,columtelefono, columnickname, columtipo,
-                columexamenes,columquices,columtareas,columproyecto1,columproyecto2,columproyecto3,columpromex,columprompro,columnotafinal);
+                columexamenes,columquices,columtareas,columproyecto1,columproyecto2,columproyecto3,columpromex,
+                columprompro,columnotafinal);
         
         VBox vbox = new VBox();
         vbox.getChildren().addAll(latabla);
@@ -102,40 +125,40 @@ public class Tabla extends Application {
         ventana.show();    
     }
     
-public ObservableList<Informacion> getInformacion() throws FileNotFoundException, IOException{
+    public ObservableList<Estudiantes> getInformacion() throws FileNotFoundException, IOException{
    
-    ObservableList<Informacion> info = FXCollections.observableArrayList();
-    String linea;
-    double promedioA;
-    double promedioB;
-    
-             
-          BufferedReader archivo=new BufferedReader(new FileReader("C:\\Users\\Nati Gonzalez\\Desktop\\Datos I\\Tarea EC 1\\Notas.csv"));
-          System.out.println("");
-         
-          while ((linea=archivo.readLine()) != null) {
-                String[] dato = linea.split(",", -1);
-                promedioA=(Double.parseDouble(dato[6])+Double.parseDouble(dato[7])+Double.parseDouble(dato[8]))/3;
-                promedioB=(Double.parseDouble(dato[9])+Double.parseDouble(dato[10])+Double.parseDouble(dato[11]))/3;
-                if ("A".equals(dato[5]) || "a".equals(dato[5])){
-                    typeA obj=new typeA();
-                    obj.Informacion(dato[0], dato[1], dato[2],dato[3], dato[4], dato[5],dato[6],
-                            dato[7],dato[8],dato[9],dato[10],dato[11]);
-                    obj.promExamenes=Double.toString(promedioA);
-                    obj.notafinal=Double.toString((promedioA+promedioB)/2);
-                    info.add(obj);
-                }
-                else{
-                    
-                    typeB obj=new typeB();
-                    obj.Informacion(dato[0], dato[1], dato[2],dato[3], dato[4], dato[5],dato[6],
-                            dato[7],dato[8],dato[9],dato[10],dato[11]);
-                    obj.promProyectos=Double.toString(promedioB);
-                    obj.notafinal=Double.toString((promedioA+promedioB)/2);
-                    info.add(obj);
-                }
-                }     
-    return info;
-}
+        ObservableList<Estudiantes> info = FXCollections.observableArrayList();
+        String linea;
+        double promedioA;
+        double promedioB;
+        File file = new File("C:\\Users\\Nati Gonzalez\\Desktop\\Datos I\\Tarea EC 1\\notas.csv");
+        String path= file.getParent();
+        System.out.println(path);
+        
+        
+        BufferedReader archivo=new BufferedReader(new FileReader("C:\\Users\\Nati Gonzalez\\Desktop\\Datos I\\Tarea EC 1\\notas.csv"));
+        while ((linea=archivo.readLine()) != null) {
+            String[] dato = linea.split(",", -1);       
+            promedioA=(Double.parseDouble(dato[6])+Double.parseDouble(dato[7])+Double.parseDouble(dato[8]))/3;
+            promedioB=(Double.parseDouble(dato[9])+Double.parseDouble(dato[10])+Double.parseDouble(dato[11]))/3;
+        
+            if ("A".equals(dato[5]) || "a".equals(dato[5])){
+                typeA obj=new typeA();
+                obj.Informacion(dato[0], dato[1], dato[2],dato[3], dato[4], dato[5],dato[6],dato[7],dato[8],dato[9],dato[10],dato[11]);
+                obj.promExamenes=Double.toString(promedioA);
+                obj.notafinal=Double.toString(obj.calcularNotaFinal(promedioA, promedioB));
+                
+                info.add(obj);
+            }
+            else{
+                typeB obj=new typeB();
+                obj.Informacion(dato[0], dato[1], dato[2],dato[3], dato[4], dato[5],dato[6],dato[7],dato[8],dato[9],dato[10],dato[11]);
+                obj.promProyectos=Double.toString(promedioB);
+                obj.notafinal=Double.toString(obj.calcularNotaFinal(promedioA, promedioB));
+                info.add(obj);
+            }
+        }     
+        return info;
+    }
 }
 

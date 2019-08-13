@@ -1,7 +1,21 @@
 
 package tabla;
-
-public class Informacion {
+/**
+ * Es la clase padre para crear los objetos que se muestran en la tabla, tiene como clases hijas 
+ * typeA y typeB que tienen un atributo diferente dependiendo del tipo de estudiante
+ * 
+ * Se aplican los conceptos:
+ * Abstracción: Se ven las características principales de los estudiantes y al crear el objeto se 
+ * hace la representación de las notas del estudiante.
+ * Atributos: Cada estudiante tiene características que puede cambiar entre ellos como la cédula, el nombre, 
+ * el carnet, notas, etc.
+ * Métodos: Existe el método calcularNotaFinal que recibe 2 argumentos y saca el promedio entre ellos
+ * Herencia: Comparte sus atributos y métodos con las clases hijas typeA y typeB
+ * 
+ * @author Natalia Gonzalez
+ */
+public class Estudiantes {
+    
     public String carnet;
     public String nombre;
     public String correo;
@@ -15,11 +29,8 @@ public class Informacion {
     public String proyecto2;
     public String proyecto3;
     public String notafinal;
-    //private String promExamenes;
-    //private String promProyectos;
     
-    
-    public Informacion(){
+    public Estudiantes(){
         this.carnet = "";
         this.correo = "";
         this.examenes = "";
@@ -32,8 +43,6 @@ public class Informacion {
         this.tareas = "";
         this.telefono =  "";
         this.tipo = "";
-        //this.promProyectos="";
-        //this.promExamenes="";
         this.notafinal = "";
         
     }
@@ -53,15 +62,11 @@ public class Informacion {
         this.tareas = tareas;
         this.telefono =  telefono;
         this.tipo = tipo;
-       // this.notafinal = Double.toString((examenes+tareas+quices+proyecto1+proyecto2+proyecto3)/6);
-        /*if ("A".equals(tipo) || "a".equals(tipo)){
-            this.promExamenes=Double.toString((examenes+quices+tareas)/3);   
-            
-            }
-        if ("B".equals(tipo)|| "b".equals(tipo)){
-            this.promProyectos=Double.toString((proyecto1+proyecto2+proyecto3)/3);
-            
-            }*/
+       
+    }
+    public int calcularNotaFinal(double promedioA,double promedioB){
+        return (int)((promedioA+promedioB)/2);
+    
     }
 
     public String getCarnet() {
@@ -167,11 +172,6 @@ public class Informacion {
     public void setNotafinal(String notafinal) {
         this.notafinal = notafinal;
     }
-   
-   
-
-  
-
        
         }
     

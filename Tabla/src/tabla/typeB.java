@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tabla;
 
 /**
- *
- * @author Nati Gonzalez
+ *Clase para estudiantes de tipo B, se les agrega el atributo de promedio de proyecto1, proyecto2 y proyecto3
+ * Se aplican los conceptos:
+ * Herencia: Clase hija que hereda todos los atributos de la clase Estudiantes
+ * Instancia: A partir de esta clase es donde se crean los objetos cuando el estudiante es tipo B
+ * @author Natalia Gonzalez
  */
-public class typeB extends Informacion{
+public class typeB extends Estudiantes{
     public String promProyectos;
 
     public String getPromProyectos() {
