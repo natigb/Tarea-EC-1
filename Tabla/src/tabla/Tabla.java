@@ -11,15 +11,8 @@ package tabla;
  * del tipo de estudiante
  * Instancia: En el método getInformacion donde se crea la lista de los datos para la tabla se crean objetos a partir de la clase
  * typeA o typeB correspondiente al tipo de estudiante
- *  
- * Encapsulación
- * 
- * 
- * 
- * 
- * Polimorfismo
- * Sobre-escritura
- * Sobrecarga
+ * Encapsulación: La variable ventana es privada porque no es necesario editarla desde otras clases 
+ 
  * 
  * @author Natalia González
  * @version 1.0
@@ -35,11 +28,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
 public class Tabla extends Application {
-    Stage ventana;
+    //Aplicación de a encapsulación
+    private Stage ventana;
     TableView<Estudiantes> latabla;
     public static void main(String[] args) {
         launch(args);
@@ -125,40 +120,50 @@ public class Tabla extends Application {
         ventana.show();    
     }
     
+    
+    
+    
     public ObservableList<Estudiantes> getInformacion() throws FileNotFoundException, IOException{
-   
+        FileChooser file = new FileChooser();
+        File selectedFile= file.showOpenDialog(null);
+        File direccion = null;
+        
+        if (selectedFile != null){
+            direccion=selectedFile.getAbsoluteFile();
+           }
+        
         ObservableList<Estudiantes> info = FXCollections.observableArrayList();
         String linea;
         double promedioA;
         double promedioB;
-        File file = new File("C:\\Users\\Nati Gonzalez\\Desktop\\Datos I\\Tarea EC 1\\notas.csv");
-        String path= file.getParent();
-        System.out.println(path);
-        
-        
-        BufferedReader archivo=new BufferedReader(new FileReader("C:\\Users\\Nati Gonzalez\\Desktop\\Datos I\\Tarea EC 1\\notas.csv"));
+   
+        BufferedReader archivo=new BufferedReader(new FileReader(direccion));
+        archivo.readLine();
         while ((linea=archivo.readLine()) != null) {
             String[] dato = linea.split(",", -1);       
             promedioA=(Double.parseDouble(dato[6])+Double.parseDouble(dato[7])+Double.parseDouble(dato[8]))/3;
             promedioB=(Double.parseDouble(dato[9])+Double.parseDouble(dato[10])+Double.parseDouble(dato[11]))/3;
         
             if ("A".equals(dato[5]) || "a".equals(dato[5])){
-                typeA obj=new typeA();
-                obj.Informacion(dato[0], dato[1], dato[2],dato[3], dato[4], dato[5],dato[6],dato[7],dato[8],dato[9],dato[10],dato[11]);
-                obj.promExamenes=Double.toString(promedioA);
-                obj.notafinal=Double.toString(obj.calcularNotaFinal(promedioA, promedioB));
+                //Creación de una instancia
+                typeA estudiante=new typeA();
+                estudiante.Informacion(dato[0], dato[1], dato[2],dato[3], dato[4], dato[5],dato[6],dato[7],dato[8],dato[9],dato[10],dato[11]);
+                estudiante.promExamenes=Double.toString(promedioA);
+                estudiante.notafinal=Double.toString(estudiante.calcularNotaFinal(promedioA, promedioB));
                 
-                info.add(obj);
+                info.add(estudiante);
             }
             else{
-                typeB obj=new typeB();
-                obj.Informacion(dato[0], dato[1], dato[2],dato[3], dato[4], dato[5],dato[6],dato[7],dato[8],dato[9],dato[10],dato[11]);
-                obj.promProyectos=Double.toString(promedioB);
-                obj.notafinal=Double.toString(obj.calcularNotaFinal(promedioA, promedioB));
-                info.add(obj);
+                //Creación de una instancia
+                typeB estudiante=new typeB();
+                estudiante.Informacion(dato[0], dato[1], dato[2],dato[3], dato[4], dato[5],dato[6],dato[7],dato[8],dato[9],dato[10],dato[11]);
+                estudiante.promProyectos=Double.toString(promedioB);
+                estudiante.notafinal=Double.toString(estudiante.calcularNotaFinal(promedioA, promedioB));
+                info.add(estudiante);
             }
         }     
         return info;
     }
+    
 }
 

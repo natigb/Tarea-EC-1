@@ -6,7 +6,7 @@ package tabla;
  * 
  * Se aplican los conceptos:
  * Abstracción: Se ven las características principales de los estudiantes y al crear el objeto se 
- * hace la representación de las notas del estudiante.
+ * hace la representación de las notas del estudiante. No se pueden crear objetos a partir de esta clase
  * Atributos: Cada estudiante tiene características que puede cambiar entre ellos como la cédula, el nombre, 
  * el carnet, notas, etc.
  * Métodos: Existe el método calcularNotaFinal que recibe 2 argumentos y saca el promedio entre ellos
@@ -14,7 +14,8 @@ package tabla;
  * 
  * @author Natalia Gonzalez
  */
-public class Estudiantes {
+//Aplicación de la abstracción
+public abstract class Estudiantes {
     
     public String carnet;
     public String nombre;
@@ -30,22 +31,7 @@ public class Estudiantes {
     public String proyecto3;
     public String notafinal;
     
-    public Estudiantes(){
-        this.carnet = "";
-        this.correo = "";
-        this.examenes = "";
-        this.nickname = "";
-        this.nombre = "";
-        this.proyecto1 = "";
-        this.proyecto2 = "";
-        this.proyecto3 = "";
-        this.quices = "";
-        this.tareas = "";
-        this.telefono =  "";
-        this.tipo = "";
-        this.notafinal = "";
-        
-    }
+   
     public void Informacion(String carnet, String nombre, String correo, 
     String telefono, String nickname, String tipo, String examenes,
     String quices, String tareas, String proyecto1,String proyecto2,
